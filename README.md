@@ -1,43 +1,46 @@
 # BLE Smart Lock Denial-of-Service (DoS) Vulnerability
 
-> Unauthenticated BLE spam can reliably prevent users from unlocking the device by interrupting keypad input, causing forced lockouts every 10–15 seconds.
+> An unauthenticated Bluetooth Low Energy (BLE) connection flood can reliably prevent legitimate users from unlocking the device by interrupting keypad input and forcing repeated lockout states.
 
 ---
 
 ## 📌 Summary
 
-This repository documents a **Denial-of-Service (DoS)** vulnerability affecting a commercial BLE smart lock ([Amazon Product](https://www.amazon.com/dp/B0F9L1M4XG)).
+This repository documents a **Denial-of-Service (DoS)** vulnerability affecting a commercial BLE smart padlock  
+([Amazon Product](https://www.amazon.com/dp/B0F9L1M4XG)).
 
-The attack floods the device with BLE connection attempts using a **static MAC address**, causing the lock’s keypad to become unresponsive before the user can finish entering their PIN. This results in:
+The device exposes a **static BLE MAC address (no RPA)** and accepts unauthenticated connection attempts. By repeatedly initiating BLE connections in a loop, an attacker can interfere with the lock’s keypad authentication flow, preventing users from completing PIN entry.
 
-- 1–1.5 second input windows
-- **Forced 10–15 second lockouts**
-- Lock remains unusable during the attack
-
-> Importantly, this behavior occurs **before** the user can finish inputting any pin — this is **not** caused by invalid password attempts.
+This behavior is **not caused by incorrect password attempts** — the user is denied sufficient time to enter the PIN before the device forcibly enters a lockout state.
 
 ---
 
 ## 🔥 Impact
 
-- ❌ Users can't unlock the device — keypad becomes unresponsive mid-input
-- 🔁 Lockout resets every 10–15 seconds as long as the attack runs
-- 🔓 Affects locks with **default or custom configuration**
-- 💡 Target MAC address is **static** (no RPA), so attack is persistently viable
-- 🚫 No pairing or authentication is required
+- ❌ Prevents legitimate users from unlocking the device
+- ⛔ Keypad becomes unresponsive mid‑input
+- 🔁 Forced lockout occurs every **10–15 seconds**
+- 🧠 Lockout is triggered **by BLE interference**, not invalid PIN attempts
+- 🔓 Works on default and custom configurations
+- 📡 Target uses a **static MAC address**, allowing persistent targeting
+- 🚫 No pairing or authentication required
+
+As long as the attack is sustained, the device remains effectively unusable.
 
 ---
 
 ## 🧪 Attack Prerequisites
 
-- BLE adapter - Linux 
+- BLE‑capable system (Linux or macOS recommended)
 - Python 3.x
-- `bleak` library (`pip install bleak`)
-- MAC address of the device (broadcasted after pressing pairing button on lock)
+- `bleak` library
+- Target device MAC address  
+  (broadcast after pressing the physical pairing button on the lock)
 
 ---
 
-## 🚀 Usage
+## 🚀 Proof of Concept
 
+### Install Dependencies
 ```bash
-python3 poc.py -m <target_mac>
+pip install bleak
