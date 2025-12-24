@@ -30,7 +30,7 @@ The attack floods the device with BLE connection attempts using a **static MAC a
 
 ## 🧪 Attack Prerequisites
 
-- BLE adapter (Linux or macOS)
+- BLE adapter - Linux 
 - Python 3.x
 - `bleak` library (`pip install bleak`)
 - MAC address of the device (broadcasted after pressing pairing button on lock)
@@ -40,4 +40,4 @@ The attack floods the device with BLE connection attempts using a **static MAC a
 ## 🚀 Usage
 
 ```bash
-python3 dos_lock.py --mac <target_mac>
+python3 poc.py -m <target_mac>
