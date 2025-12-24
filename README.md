@@ -10,8 +10,12 @@
 This repository documents a **Denial-of-Service (DoS)** vulnerability affecting a commercial BLE smart padlock  
 ([Amazon Product](https://www.amazon.com/dp/B0F9L1M4XG)).
 
+<<<<<<< HEAD
 The device exposes a **static BLE MAC address (no RPA)** and accepts unauthenticated connection attempts.  
 By repeatedly initiating BLE connections in a loop, an attacker can interfere with the lock’s keypad authentication flow, preventing users from completing PIN entry.
+=======
+The device exposes a **static BLE MAC address (no RPA)** and accepts unauthenticated connection attempts. By repeatedly initiating BLE connections in a loop, an attacker can interfere with the lock’s keypad authentication flow, preventing users from completing PIN entry.
+>>>>>>> refs/remotes/origin/main
 
 This behavior is **not caused by incorrect password attempts** — the user is denied sufficient time to enter the PIN before the device forcibly enters a lockout state.
 
@@ -19,6 +23,7 @@ This behavior is **not caused by incorrect password attempts** — the user is d
 
 ## 🔥 Impact
 
+<<<<<<< HEAD
 - ❌ Prevents legitimate users from unlocking the device  
 - ⛔ Keypad becomes unresponsive mid‑input  
 - 🔁 Forced lockout occurs every **10–15 seconds**  
@@ -26,6 +31,15 @@ This behavior is **not caused by incorrect password attempts** — the user is d
 - 🔓 Works on both default and custom configurations  
 - 📡 Target uses a **static MAC address**, allowing persistent tracking  
 - 🚫 No pairing or authentication required  
+=======
+- ❌ Prevents legitimate users from unlocking the device
+- ⛔ Keypad becomes unresponsive mid‑input
+- 🔁 Forced lockout occurs every **10–15 seconds**
+- 🧠 Lockout is triggered **by BLE interference**, not invalid PIN attempts
+- 🔓 Works on default and custom configurations
+- 📡 Target uses a **static MAC address**, allowing persistent targeting
+- 🚫 No pairing or authentication required
+>>>>>>> refs/remotes/origin/main
 
 As long as the attack is sustained, the device remains effectively unusable.
 
@@ -33,6 +47,7 @@ As long as the attack is sustained, the device remains effectively unusable.
 
 ## 🧪 Attack Prerequisites
 
+<<<<<<< HEAD
 - BLE-capable Linux  
 - Python 3.x  
 - `bleak` Python library  
@@ -91,3 +106,18 @@ This vulnerability is being reported responsibly to the vendor and relevant CVE 
 
 - Amazon Product: https://www.amazon.com/dp/B0F9L1M4XG  
 - GitHub Repo: https://github.com/nsm-barii/ble-smartlock-dos
+=======
+- BLE‑capable system (Linux or macOS recommended)
+- Python 3.x
+- `bleak` library
+- Target device MAC address  
+  (broadcast after pressing the physical pairing button on the lock)
+
+---
+
+## 🚀 Proof of Concept
+
+### Install Dependencies
+```bash
+pip install bleak
+>>>>>>> refs/remotes/origin/main
