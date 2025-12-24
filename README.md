@@ -44,6 +44,8 @@ As long as the attack is sustained, the device remains effectively unusable.
 
 ### Step 1: Install Dependencies
 ```bash
+python3 -m venv venv
+source venv/bin/activate
 pip install bleak
 ```
 
