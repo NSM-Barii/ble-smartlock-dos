@@ -83,7 +83,7 @@ This vulnerability is being reported responsibly to the vendor and relevant CVE 
 
 - Vulnerability discovered: 2025  
 - Reported to: MITRE + VulnCheck  
-- CVE status: **Pending**  
+- CVE status: **Assigned**  
 - Researcher: **nsm_barii**  
   GitHub: https://github.com/nsm-barii
 
