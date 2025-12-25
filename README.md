@@ -92,4 +92,4 @@ This vulnerability is being reported responsibly to the vendor and relevant CVE 
 ## 🔗 References
 
 - Amazon Product: https://www.amazon.com/dp/B0F9L1M4XG  
-- GitHub Repo: https://github.com/nsm-barii/ble-smartlock-dos
+- GitHub Repo: https://github.com/nsm-barii/CVE-2025-34462
